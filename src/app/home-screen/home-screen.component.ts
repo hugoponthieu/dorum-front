@@ -8,5 +8,4 @@ import { PostTableComponent } from '../post-table/post-table.component';
   templateUrl: './home-screen.component.html',
 })
 export class HomeScreenComponent {
-  list = [1, 4]
 }

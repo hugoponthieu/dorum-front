@@ -1,18 +1,58 @@
-<table class="table-auto">
-    <thead>
-      <tr>
-        <th>Topic</th>
-        <th>Posts</th>
-        <th>Last Post</th>
+  
+<div
+class="relative flex flex-col h-4/5 w-full overflow-scroll text-gray-700 bg-white shadow-md bg-clip-border rounded-xl">
+<table class="w-full text-left table-auto min-w-max">
+  <thead>
+    <tr>
+      <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+          Name
+        </p>
+      </th>
+      <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+          Number of post
+        </p>
+      </th>
+      <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+          Last post date
+        </p>
+      </th>
+      <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"></p>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (topic of topics; track topic.id) {
+      <tr class="even:bg-blue-gray-50/50">
+        <td class="p-4">
+          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+            {{topic.name}}
+          </p>
+        </td>
+        <td class="p-4">
+          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+            {{topic.numberOfPosts}}
+          </p>
+        </td>
+        <td class="p-4">
+          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+            {{topic.lastPostDate}}
+          </p>
+        </td>
+        <td class="p-4">
+          <a (click)="(navigateTo(topic))" class="block font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900">See posts</a>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      @for (post of posts; track post.id) {
-        <tr>
-          <td>{{ post.name }}</td>
-          <td>{{ post.numberOfPosts }}</td>
-          <td>{{ post.lastPostDate }}</td>
-        </tr>
-      }
-    </tbody>
-  </table>
+    } 
+  </tbody>
+</table>
+</div>
+
+  
+
+  
+  
+

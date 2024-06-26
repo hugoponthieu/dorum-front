@@ -3,4 +3,5 @@ import { HomeScreenComponent } from './home-screen/home-screen.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeScreenComponent },
+    { path: 'pouette', component: HomeScreenComponent }
 ];
