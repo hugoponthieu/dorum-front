@@ -15,12 +15,6 @@ export class PostTableComponent {
     { id: 1, name: 'Introduction to Angular', numberOfPosts: 10, lastPostDate: new Date('2024-01-15').toDateString() },
     { id: 2, name: 'Advanced TypeScript', numberOfPosts: 5, lastPostDate: new Date('2024-02-20').toDateString() },
     { id: 3, name: 'RxJS in Depth', numberOfPosts: 8, lastPostDate: new Date('2024-03-05').toDateString() },
-    { id: 1, name: 'Introduction to Angular', numberOfPosts: 10, lastPostDate: new Date('2024-01-15').toDateString() },
-    { id: 2, name: 'Advanced TypeScript', numberOfPosts: 5, lastPostDate: new Date('2024-02-20').toDateString() },
-    { id: 3, name: 'RxJS in Depth', numberOfPosts: 8, lastPostDate: new Date('2024-03-05').toDateString() },
-    { id: 1, name: 'Introduction to Angular', numberOfPosts: 10, lastPostDate: new Date('2024-01-15').toDateString() },
-    { id: 2, name: 'Advanced TypeScript', numberOfPosts: 5, lastPostDate: new Date('2024-02-20').toDateString() },
-    { id: 3, name: 'RxJS in Depth', numberOfPosts: 8, lastPostDate: new Date('2024-03-05').toDateString() },
   ]);
   displayedColumns: string[] = ['name', 'numberOfPosts', 'lastPostDate'];
 
@@ -28,7 +22,7 @@ export class PostTableComponent {
 
 
   navigateTo(topic: any) {
-    this.router.navigate(['/topic' + topic.id])
+    this.router.navigate(['/topic/' + topic.id])
     // You can add any other action you want to perform on row click here
   }
 }
