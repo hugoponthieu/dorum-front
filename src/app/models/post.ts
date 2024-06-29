@@ -1,4 +1,4 @@
-export interface Message {
+export interface Post {
     author: string
     content: string
     id: string

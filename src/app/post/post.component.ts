@@ -2,15 +2,15 @@ import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonComponent } from "../button/button.component";
-import { Message } from '../models/message';
+import { Post } from '../models/post';
 @Component({
-  selector: 'app-message',
+  selector: 'app-post',
   standalone: true,
-  templateUrl: './message.component.html',
+  templateUrl: './post.component.html',
   imports: [MatIconModule, ButtonComponent]
 })
-export class MessageComponent {
-  @Input() messageId = '1';
+export class PostComponent {
+  @Input() postId = '1';
   topicId: string | null = null;
   delete = "Delete this post"
   edit = "Edit this post"
@@ -23,13 +23,13 @@ export class MessageComponent {
   }
 
   toEditScreen() {
-    this.router.navigate(['/topic/' + this.topicId + '/message/' + this.messageId])
+    this.router.navigate(['/topic/' + this.topicId + '/post/' + this.postId])
   }
-  deletePost(){
-    console.log(this.messageId)
+  deletePost() {
+    console.log(this.postId)
   }
 
-  @Input() message: Message = {
+  @Input() post: Post = {
     author: '',
     content: '',
     id: '',

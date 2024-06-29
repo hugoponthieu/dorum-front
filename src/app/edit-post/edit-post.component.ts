@@ -4,30 +4,30 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonComponent } from "../button/button.component";
 
 @Component({
-    selector: 'app-edit-message',
-    standalone: true,
-    templateUrl: './edit-message.component.html',
-    imports: [ReactiveFormsModule, ButtonComponent]
+  selector: 'app-edit-post',
+  standalone: true,
+  templateUrl: './edit-post.component.html',
+  imports: [ReactiveFormsModule, ButtonComponent]
 })
-export class EditMessageComponent {
+export class EditPostComponent {
   topicId: string | null = null;
-  messageId: string | null = null;
+  postId: string | null = null;
   buttonTitle = "Send"
-  pageTitle= ''
+  pageTitle = ''
   ngOnInit(): void {
     this.route.parent?.paramMap.subscribe(params => {
       this.topicId = params.get('id');
     });
     this.route.paramMap.subscribe(params => {
-      this.messageId = params.get('messageId');
+      this.postId = params.get('postId');
     });
-    this.pageTitle = this.messageId == null ? "Edit post":"New post"
+    this.pageTitle = this.postId == null ? "Edit post" : "New post"
   }
   constructor(private router: Router, private route: ActivatedRoute) {
   }
   content = new FormControl('')
   navigateTo() {
-    this.router.navigate(['/topic/'+this.topicId])
+    this.router.navigate(['/topic/' + this.topicId])
   }
   onSubmit() {
     console.log(this.content.value)
