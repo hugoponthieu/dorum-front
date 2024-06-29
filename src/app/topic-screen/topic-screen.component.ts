@@ -1,19 +1,25 @@
-import { Component } from '@angular/core';
-import { PostTableComponent } from "../post-table/post-table.component";
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { MessageComponent } from "../message/message.component";
-import { Message } from '../models/message';
+import { Topic } from '../models/topic';
+import { PostTableComponent } from "../post-table/post-table.component";
 
 @Component({
     selector: 'app-topic-screen',
     standalone: true,
     templateUrl: './topic-screen.component.html',
-    imports: [PostTableComponent, MessageComponent]
+    imports: [PostTableComponent, MessageComponent, RouterOutlet]
 })
 export class TopicScreenComponent {
-    message: Message = {
-        id: "1231",
-        content: "The best message you've ever seen so far",
-        author: "me",
-        date: "12-06-24"
-      }
+    private route = inject(ActivatedRoute);
+    ngOnInit(): void {
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+    }
+    topic: Topic = {
+        id: 0,
+        name: 'Le royal pouleto',
+        numberOfPosts: 0,
+        lastPostDate: ''
+    }
+
 }
