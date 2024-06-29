@@ -1,4 +1,7 @@
-<div class="flex flex-row bg-black/70 h-20 rounded-b-xl">
+<div class="flex flex-row bg-black/70 h-20 rounded-b-xl items-center justify-between">
     <p class="p-6 text-white text-3xl">{{topic.name}}</p>
+    <div class="p-6">
+        <app-button [title]="buttonTitle"></app-button>
+    </div>
 </div>
 <router-outlet></router-outlet>

@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ButtonComponent } from "../button/button.component";
 
 @Component({
-  selector: 'app-edit-message',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './edit-message.component.html',
+    selector: 'app-edit-message',
+    standalone: true,
+    templateUrl: './edit-message.component.html',
+    imports: [ReactiveFormsModule, ButtonComponent]
 })
 export class EditMessageComponent {
   topicId: string | null = null;
+  buttonTitle = "Send"
   ngOnInit(): void {
     this.route.parent?.paramMap.subscribe(params => {
       this.topicId = params.get('id');
@@ -25,6 +27,5 @@ export class EditMessageComponent {
   onSubmit() {
     console.log(this.content.value)
     this.navigateTo()
-
   }
 }
