@@ -1,5 +1,6 @@
 <div class="flex flex-row bg-black/20 h-full justify-center overflow-y-auto">
     <div class="flex flex-col  w-3/4 pt-8 space-y-4">
-        <app-post [post]="post"></app-post>
+        @for (post of posts; track post.id) {
+        <app-post [post]="post" [deletePost]="deletePost(+post.id)"></app-post>}
     </div>
 </div>

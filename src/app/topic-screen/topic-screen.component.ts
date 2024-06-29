@@ -4,12 +4,14 @@ import { ButtonComponent } from "../button/button.component";
 import { Topic } from '../models/topic';
 import { PostTableComponent } from "../post-table/post-table.component";
 import { PostComponent } from "../post/post.component";
+import { TopicsService } from '../topics.service';
 
 @Component({
     selector: 'app-topic-screen',
     standalone: true,
     templateUrl: './topic-screen.component.html',
-    imports: [PostTableComponent, PostComponent, RouterOutlet, RouterModule, ButtonComponent]
+    imports: [PostTableComponent, PostComponent, RouterOutlet, RouterModule, ButtonComponent],
+    providers: [TopicsService]
 })
 export class TopicScreenComponent {
     topicId: string | null = null;
@@ -19,14 +21,19 @@ export class TopicScreenComponent {
     buttonHome = "Go home"
     ngOnInit(): void {
         this.topicId = (this.route.snapshot.paramMap.get('id'));
+        this.topicsService.getTopicById(this.topicId ?? '1').subscribe((data: Topic) => {
+            this.topic = data
+            console.log(data);
+        });
+
     }
     topic: Topic = {
         id: 0,
-        title: 'Le royal pouleto',
+        title: 'test',
         postcount: 0,
-        updatedAt: ''
+        updatedAt: new Date()
     }
-    constructor(private router: Router) {
+    constructor(private router: Router, private topicsService: TopicsService) {
     }
     navigateToNewPost() {
         this.router.navigate(['/topic/' + this.topicId + '/post'])

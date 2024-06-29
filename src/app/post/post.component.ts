@@ -1,21 +1,30 @@
 import { Component, Input } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonComponent } from "../button/button.component";
 import { Post } from '../models/post';
+import { PostsService } from '../posts.service';
 @Component({
   selector: 'app-post',
   standalone: true,
   templateUrl: './post.component.html',
-  imports: [MatIconModule, ButtonComponent]
+  imports: [ ButtonComponent],
+  providers: [PostsService]
 })
 export class PostComponent {
-  @Input() postId = '1';
+  @Input()
+  deletePost!: () => {};
+  @Input() post:Post  = {
+    author: '',
+    content: '',
+    id: 0,
+    udpatedAt: ''
+  };
   topicId: string | null = null;
   delete = "Delete this post"
   edit = "Edit this post"
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute,private postsService: PostsService) {
   }
+  
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.topicId = params.get('id');
@@ -23,16 +32,8 @@ export class PostComponent {
   }
 
   toEditScreen() {
-    this.router.navigate(['/topic/' + this.topicId + '/post/' + this.postId])
-  }
-  deletePost() {
-    console.log(this.postId)
+    this.router.navigate(['/topic/' + this.topicId + '/post/' + this.post.id])
   }
 
-  @Input() post: Post = {
-    author: '',
-    content: '',
-    id: '',
-    date: ''
-  };
+
 }

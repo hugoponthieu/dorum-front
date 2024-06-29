@@ -1,18 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PostComponent } from "../post/post.component";
 import { Post } from '../models/post';
+import { PostsService } from '../posts.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-posts-screen',
     standalone: true,
     templateUrl: './posts-screen.component.html',
-    imports: [PostComponent]
+    imports: [PostComponent,],
+    providers: [PostsService]
 })
 export class PostsScreenComponent {
-    post: Post = {
-        id: "1231",
-        content: "The best post you've ever seen so far",
-        author: "me",
-        date: "12-06-24"
+    constructor(private postsService: PostsService, private route: ActivatedRoute) {
+
     }
+    topicId: string | null = null;
+    ngOnInit(): void {
+        this.route.paramMap.subscribe(params => {
+            this.topicId = params.get('id');
+        });
+        this.postsService.getPostsByTopic(this.topicId ?? '1').subscribe((data: Post[]) => {
+            this.posts = data;
+            console.log(this.posts);
+        });
+
+    }
+
+    deletePost(postId: number) {
+        return () => this.postsService.deletePost(this.topicId ?? '1', postId.toString()).subscribe(() => {
+            this.posts = this.posts.filter(post => post.id !== postId);
+        }, error => {
+            console.error('Error deleting post:', error);
+        });
+
+    }
+    posts: Post[] = []
 }
