@@ -19,8 +19,6 @@ export class PostTableComponent {
   displayedColumns: string[] = ['name', 'numberOfPosts', 'lastPostDate'];
 
 
-
-
   navigateTo(topic: any) {
     this.router.navigate(['/topic/' + topic.id])
     // You can add any other action you want to perform on row click here
