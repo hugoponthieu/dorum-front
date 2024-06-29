@@ -1,0 +1,7 @@
+@use '@angular/material' as mat;
+
+$theme: mat.define-theme();
+
+.tertiary-checkbox {
+  @include mat.checkbox-color($theme, $color-variant: tertiary);
+}
