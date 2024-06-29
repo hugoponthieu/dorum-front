@@ -23,8 +23,8 @@ export class TopicScreenComponent {
     topic: Topic = {
         id: 0,
         title: 'Le royal pouleto',
-        numberOfPosts: 0,
-        lastPostDate: ''
+        postcount: 0,
+        updatedAt: ''
     }
     constructor(private router: Router) {
     }
