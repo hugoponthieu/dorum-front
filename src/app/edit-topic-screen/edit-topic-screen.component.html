@@ -1,0 +1,13 @@
+<div class="flex flex-row bg-black/20 h-full justify-center overflow-y-auto">
+    <div class="flex flex-col  w-3/4 pt-8 space-y-4 items-center">
+        <div class="flex flex-row items-start w-1/2">
+            <p class="text-3xl">
+                {{pageTitle}}
+            </p>
+        </div>
+            <input type="text"[formControl]="title" placeholder="topic title" class="rounded-md w-1/2  p-2">
+        <div class="flex flex-col items-end w-1/2">
+            <app-button [title]="buttonTitle" (click)="onSubmit()"></app-button>
+        </div>
+    </div>
+</div>
