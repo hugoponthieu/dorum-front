@@ -11,12 +11,17 @@ import { ButtonComponent } from "../button/button.component";
 })
 export class EditMessageComponent {
   topicId: string | null = null;
+  messageId: string | null = null;
   buttonTitle = "Send"
+  pageTitle= ''
   ngOnInit(): void {
     this.route.parent?.paramMap.subscribe(params => {
       this.topicId = params.get('id');
     });
-    console.log(this.topicId)
+    this.route.paramMap.subscribe(params => {
+      this.messageId = params.get('messageId');
+    });
+    this.pageTitle = this.messageId == null ? "Edit post":"New post"
   }
   constructor(private router: Router, private route: ActivatedRoute) {
   }

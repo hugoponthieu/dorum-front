@@ -9,7 +9,8 @@ export const routes: Routes = [
     {
         path: 'topic/:id', component: TopicScreenComponent, children: [
             { path: '', component: PostsScreenComponent },
-            { path: 'message/:messageId', component: EditMessageComponent,  }
+            { path: 'message/:messageId', component: EditMessageComponent, },
+            { path: 'message', component: EditMessageComponent }
         ]
     }
 ];
