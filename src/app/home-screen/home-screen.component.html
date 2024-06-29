@@ -1,3 +1,10 @@
-<div class="flex flex-row bg-black/20 h-dvh justify-center ">
+<div class="flex flex-row bg-black/70 h-20 rounded-b-xl items-center justify-between">
+    <p class="p-6 text-white text-3xl">Dorum</p>
+    <div class="p-6">
+        <app-button [title]="buttonCreateTopicTitle" (click)="navigateToCreateTopic()"></app-button>
+    </div>
+</div>
+
+<div class="flex flex-row bg-black/20 h-dvh justify-center pt-6">
     <app-post-table></app-post-table>
 </div>

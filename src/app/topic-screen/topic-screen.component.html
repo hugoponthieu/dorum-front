@@ -1,7 +1,10 @@
 <div class="flex flex-row bg-black/70 h-20 rounded-b-xl items-center justify-between">
     <p class="p-6 text-white text-3xl">{{topic.name}}</p>
-    <div class="p-6">
-        <app-button [title]="buttonTitle" (click)="navigateToNewPost()"></app-button>
+    <div class="flex flex-row items-center px-6 gap-6">
+            <app-button [title]="buttonTitle" (click)="navigateToNewPost()"></app-button>
+            <app-button [title]="buttonEditTopicTitle" (click)="navigateToEditTopic()"></app-button>
+
     </div>
+  
 </div>
 <router-outlet></router-outlet>

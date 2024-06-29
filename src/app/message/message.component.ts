@@ -35,6 +35,4 @@ export class MessageComponent {
     id: '',
     date: ''
   };
-
-
 }

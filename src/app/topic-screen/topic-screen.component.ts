@@ -15,6 +15,7 @@ export class TopicScreenComponent {
     topicId: string | null = null;
     private route = inject(ActivatedRoute);
     buttonTitle = "New post"
+    buttonEditTopicTitle = "Edit this topic"
     ngOnInit(): void {
         this.topicId = (this.route.snapshot.paramMap.get('id'));
     }
@@ -29,5 +30,8 @@ export class TopicScreenComponent {
     navigateToNewPost() {
         console.log("navigate to message")
         this.router.navigate(['/topic/'+this.topicId+'/message'])
+    }
+    navigateToEditTopic(){
+
     }
 }
