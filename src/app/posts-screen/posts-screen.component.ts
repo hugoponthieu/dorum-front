@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { PostComponent } from "../post/post.component";
 import { Post } from '../models/post';
 import { PostsService } from '../posts.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-posts-screen',
@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
     providers: [PostsService]
 })
 export class PostsScreenComponent {
-    constructor(private postsService: PostsService, private route: ActivatedRoute) {
+    constructor(private postsService: PostsService, private route: ActivatedRoute, private router: Router) {
 
     }
     topicId: string | null = null;
@@ -35,5 +35,6 @@ export class PostsScreenComponent {
         });
 
     }
+
     posts: Post[] = []
 }
