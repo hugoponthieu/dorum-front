@@ -1,6 +1,7 @@
 export interface Topic {
-    id: number;
+    id?: number;
     title: string;
-    postcount: number;
-    updatedAt: Date;
+    owner: string;
+    postcount?: number;
+    updatedAt?: Date;
   }

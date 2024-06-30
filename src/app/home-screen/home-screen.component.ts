@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PostTableComponent } from '../post-table/post-table.component';
 import { ButtonComponent } from "../button/button.component";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-home-screen',
@@ -9,8 +10,10 @@ import { ButtonComponent } from "../button/button.component";
     imports: [PostTableComponent, ButtonComponent]
 })
 export class HomeScreenComponent {
+  constructor(private router: Router){}
+
   buttonCreateTopicTitle = "Create new topic"
   navigateToCreateTopic(){
-    console.log("test")
+    this.router.navigate(['/topic/create'])
   }
 }

@@ -5,7 +5,7 @@
                 {{pageTitle}}
             </p>
         </div>
-            <input type="text"[formControl]="title" placeholder="topic title" class="rounded-md w-1/2  p-2">
+            <input [value]="this.topic.title" type="text"[formControl]="title" placeholder="topic title" class="rounded-md w-1/2  p-2">
         <div class="flex flex-col items-end w-1/2">
             <app-button [title]="buttonTitle" (click)="onSubmit()"></app-button>
         </div>

@@ -7,28 +7,29 @@ import { PostsService } from '../posts.service';
   selector: 'app-post',
   standalone: true,
   templateUrl: './post.component.html',
-  imports: [ ButtonComponent],
+  imports: [ButtonComponent],
   providers: [PostsService]
 })
 export class PostComponent {
   @Input()
   deletePost!: () => {};
-  @Input() post:Post  = {
+  @Input() post: Post = {
     author: '',
     content: '',
     id: 0,
-    udpatedAt: ''
+    createdAt: new Date()
   };
   topicId: string | null = null;
   delete = "Delete this post"
   edit = "Edit this post"
-  constructor(private router: Router, private route: ActivatedRoute,private postsService: PostsService) {
+  constructor(private router: Router, private route: ActivatedRoute, private postsService: PostsService) {
   }
-  
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.topicId = params.get('id');
     });
+    console.log(this.post.createdAt)
   }
 
   toEditScreen() {

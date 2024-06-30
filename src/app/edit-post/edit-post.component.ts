@@ -15,6 +15,10 @@ import { Post } from '../models/post';
 export class EditPostComponent {
   topicId: string | null = null;
   postId: string | null = null;
+  post: Post = {
+    author: '',
+    content: ''
+  }
   buttonTitle = "Send"
   pageTitle = ''
   isCreating = false
@@ -26,12 +30,32 @@ export class EditPostComponent {
       this.postId = params.get('postId');
     });
     this.isCreating = this.postId == null
-    this.pageTitle = this.isCreating ? "Edit post" : "New post"
+    this.pageTitle = this.isCreating ? "New post" : "Edit post"
+    if (!this.isCreating) {
+      this.postsService.getPostById(this.topicId ?? '1', this.postId ?? '1').subscribe((data: Post) => {
+        this.post = data
+      })
+    }
   }
   constructor(private router: Router, private route: ActivatedRoute, private postsService: PostsService,) {
   }
-  content = new FormControl('')
+  content = new FormControl(this.post.content)
+  onSubmit() {
+    if (this.isCreating) {
+      this.onCreatePost()
+    } else {
+      this.onUpdate()
+    }
+  }
 
+  onUpdate(): void {
+    this.postsService.updatePost(this.topicId ?? '1', this.postId ?? '1', { author: this.post.author, content: this.content.value ?? '' }).subscribe((data: Post) => {
+      this.router.navigate(['/topic/' + this.topicId])
+    }, error => {
+      this.router.navigate(['/topic/' + this.topicId])
+      console.error('Error creating post:', error);
+    });
+  }
 
   onCreatePost(): void {
     console.log("create")

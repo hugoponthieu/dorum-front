@@ -29,6 +29,7 @@ export class TopicScreenComponent {
     }
     topic: Topic = {
         id: 0,
+        owner: '',
         title: 'test',
         postcount: 0,
         updatedAt: new Date()
