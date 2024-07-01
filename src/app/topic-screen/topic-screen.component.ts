@@ -19,6 +19,7 @@ export class TopicScreenComponent {
     buttonTitle = "New post"
     buttonEditTopicTitle = "Edit this topic"
     buttonHome = "Go home"
+    buttonDeleteTopic = "Delete this Topic"
     ngOnInit(): void {
         this.topicId = (this.route.snapshot.paramMap.get('id'));
         this.topicsService.getTopicById(this.topicId ?? '1').subscribe((data: Topic) => {
@@ -44,6 +45,12 @@ export class TopicScreenComponent {
     }
     navigateToHome() {
         this.router.navigate(['/topic/'])
+    }
+
+    deleteTopic() {
+        console.log("deleted")
+        this.topicsService.deleteTopic(this.topicId ?? '1').subscribe(() => { })
+        this.navigateToHome()
     }
 
 }

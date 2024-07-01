@@ -1,0 +1,13 @@
+<div class="flex flex-col h-full w-2/6 self-end bg-slate-600 items-center justify-center">
+    <div class="flex flex-col w-3/5 space-y-6">
+        <p class="text-white text-5xl">Dorum</p>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col space-y-6">
+            <input type="text" class="rounded-lg p-2" formControlName="email" placeholder="email">
+            <input type="password" class="rounded-lg p-2" formControlName="password" placeholder="password">
+            <div class="flex flex-row justify-between">
+                <button class="hover:underline" (click)="navigateToUpIn()">{{navigationButton}}</button>
+                <app-button [title]="actionButtonTitle" type="submit " ></app-button>
+            </div>
+        </form>
+    </div>
+</div>
