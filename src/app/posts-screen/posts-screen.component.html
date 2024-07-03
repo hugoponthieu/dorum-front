@@ -3,6 +3,7 @@
         @for (post of posts; track post.id) {
             
         <app-post [post]="post" [deletePost]="deletePost(post.id ?? 1)"></app-post>
+    
     }
     </div>
 </div>
