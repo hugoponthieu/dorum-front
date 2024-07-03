@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthenticationService {
   private baseUrl = 'http://localhost:3333/auth';
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
@@ -28,9 +28,7 @@ export class AuthService {
   }
 
   signup(data: { name: string, email: string, password: string }): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/signup`, data).pipe(
-      tap(response => this.handleAuthentication(response))
-    );
+    return this.http.post<any>(`${this.baseUrl}/signup`, data)
   }
 
   private handleAuthentication(response: any): void {

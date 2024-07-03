@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ButtonComponent } from "../button/button.component";
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TopicsService } from '../topics.service';
 import { Topic } from '../models/topic';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-edit-topic-screen',
@@ -12,7 +13,7 @@ import { Topic } from '../models/topic';
   imports: [ReactiveFormsModule, ButtonComponent],
   providers: [TopicsService]
 })
-export class EditTopicScreenComponent {
+export class EditTopicScreenComponent implements OnInit {
   topicId: string | null = null;
   topic: Topic = {
     id: 0,
@@ -24,6 +25,15 @@ export class EditTopicScreenComponent {
   buttonTitle = "Create"
   pageTitle = ''
   isCreating = false
+  title = new FormControl('')
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private topicService: TopicsService,
+    private authenticationService: AuthenticationService
+  ) { }
+
   ngOnInit(): void {
     this.route.parent?.paramMap.subscribe(params => {
       this.topicId = params.get('id');
@@ -35,19 +45,13 @@ export class EditTopicScreenComponent {
     if (!this.isCreating) {
       this.topicService.getTopicById(this.topicId ?? '1').subscribe((data: Topic) => {
         this.topic = data
-
-      })
+      });
     }
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private topicService: TopicsService) {
-
-  }
-  title = new FormControl('')
   navigateTo() {
     this.router.navigate(['/topic/' + this.topicId])
   }
-
 
   onSubmit() {
     if (this.isCreating) {
@@ -62,17 +66,17 @@ export class EditTopicScreenComponent {
       this.router.navigate(['/topic/' + this.topicId])
     }, error => {
       this.router.navigate(['/topic/' + this.topicId])
-      console.error('Error creating post:', error);
+      console.error('Error updating topic:', error);
     });
   }
 
   onCreate(): void {
-    console.log("create")
-    this.topicService.createTopic({ owner: 'test', title: this.title.value ?? '' }).subscribe((data: Topic) => {
+    const currentUser = this.authenticationService.currentUserValue;
+    this.topicService.createTopic({ owner: currentUser?.id, title: this.title.value ?? '' }).subscribe((data: Topic) => {
       this.router.navigate(['/topic'])
     }, error => {
       this.router.navigate(['/topic'])
-      console.error('Error creating post:', error);
+      console.error('Error creating topic:', error);
     });
   }
 }
