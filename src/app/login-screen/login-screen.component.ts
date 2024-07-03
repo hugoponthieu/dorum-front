@@ -25,7 +25,6 @@ export class LoginScreenComponent {
   ngOnInit() {
     this.route.url.subscribe((url) => {
       this.isSignin = url[0].path == 'signin'
-      console.log(this.isSignin)
       this.actionButtonTitle = this.isSignin ? "Sign in" : "Sign up"
       this.navigationButton = this.isSignin ? "Go to sign up" : "Go to sign in"
     })
