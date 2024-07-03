@@ -7,9 +7,12 @@
             </div>
         </div>
         <div class="pl-6 col-span-8 ">{{post.content}}</div>
-        <div class="col-span-2 flex flex-col justify-around w-full">
-            <app-button class="pl-6" [title]="edit" (click)="toEditScreen()"></app-button>
-            <app-button class="pl-6" [title]="delete" (click)="deletePost()"></app-button>
-        </div>
+        @if (isAuthor){
+            <div  class="col-span-2 flex flex-col justify-around w-full">
+                <app-button class="pl-6" [title]="'Edit'" (click)="toEditScreen()"></app-button>
+                <app-button class="pl-6" [title]="'Delete'" (click)="deletePost()"></app-button>
+            </div>
+        }
+        
     </div>
 </div>

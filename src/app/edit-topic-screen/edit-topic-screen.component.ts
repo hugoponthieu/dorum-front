@@ -72,7 +72,7 @@ export class EditTopicScreenComponent implements OnInit {
 
   onCreate(): void {
     const currentUser = this.authenticationService.currentUserValue;
-    this.topicService.createTopic({ owner: currentUser?.id, title: this.title.value ?? '' }).subscribe((data: Topic) => {
+    this.topicService.createTopic({ owner: currentUser, title: this.title.value ?? '' }).subscribe((data: Topic) => {
       this.router.navigate(['/topic'])
     }, error => {
       this.router.navigate(['/topic'])

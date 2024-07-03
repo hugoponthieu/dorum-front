@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonComponent } from "../button/button.component";
 import { PostsService } from '../posts.service';
 import { Post } from '../models/post';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-edit-post',
@@ -37,7 +38,11 @@ export class EditPostComponent {
       })
     }
   }
-  constructor(private router: Router, private route: ActivatedRoute, private postsService: PostsService,) {
+  constructor(private router: Router, private route: ActivatedRoute, private postsService: PostsService,
+    private authenticationService: AuthenticationService
+
+
+  ) {
   }
   content = new FormControl(this.post.content)
   onSubmit() {
@@ -59,7 +64,8 @@ export class EditPostComponent {
 
   onCreatePost(): void {
     console.log("create")
-    this.postsService.createPost(this.topicId ?? '1', { author: 'test', content: this.content.value ?? '' }).subscribe((data: Post) => {
+    const currentUser = this.authenticationService.currentUserValue;
+    this.postsService.createPost(this.topicId ?? '1', { author: currentUser, content: this.content.value ?? '' }).subscribe((data: Post) => {
       this.router.navigate(['/topic/' + this.topicId])
     }, error => {
       this.router.navigate(['/topic/' + this.topicId])

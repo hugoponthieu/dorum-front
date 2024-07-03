@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { PostComponent } from "../post/post.component";
-import { Post } from '../models/post';
-import { PostsService } from '../posts.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Post } from '../models/post';
+import { PostComponent } from "../post/post.component";
+import { PostsService } from '../posts.service';
 
 @Component({
     selector: 'app-posts-screen',
     standalone: true,
     templateUrl: './posts-screen.component.html',
-    imports: [PostComponent,],
+    imports: [PostComponent],
     providers: [PostsService]
 })
 export class PostsScreenComponent {
-    constructor(private postsService: PostsService, private route: ActivatedRoute, private router: Router) {
+    constructor(private postsService: PostsService, private route: ActivatedRoute, private router: Router, ) {
 
     }
     topicId: string | null = null;

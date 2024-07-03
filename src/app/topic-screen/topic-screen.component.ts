@@ -5,6 +5,7 @@ import { Topic } from '../models/topic';
 import { PostTableComponent } from "../post-table/post-table.component";
 import { PostComponent } from "../post/post.component";
 import { TopicsService } from '../topics.service';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
     selector: 'app-topic-screen',
@@ -20,12 +21,16 @@ export class TopicScreenComponent {
     buttonEditTopicTitle = "Edit this topic"
     buttonHome = "Go home"
     buttonDeleteTopic = "Delete this Topic"
+    isAuthor!: boolean;
     ngOnInit(): void {
         this.topicId = (this.route.snapshot.paramMap.get('id'));
         this.topicsService.getTopicById(this.topicId ?? '1').subscribe((data: Topic) => {
             this.topic = data
+            this.isAuthor = this.authenticationService.currentUserValue == data.owner;
+
             console.log(data);
         });
+        console.log(this.topic.owner)
 
     }
     topic: Topic = {
@@ -35,7 +40,7 @@ export class TopicScreenComponent {
         postcount: 0,
         updatedAt: new Date()
     }
-    constructor(private router: Router, private topicsService: TopicsService) {
+    constructor(private router: Router, private topicsService: TopicsService, private authenticationService: AuthenticationService) {
     }
     navigateToNewPost() {
         this.router.navigate(['/topic/' + this.topicId + '/post'])
