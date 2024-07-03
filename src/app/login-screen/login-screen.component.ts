@@ -58,7 +58,7 @@ export class LoginScreenComponent implements OnInit {
     this.authService.signin(loginData).subscribe(
       response => {
         console.log('Signin successful:', response);
-        this.router.navigate(['/topic']); 
+        this.router.navigate(['/topic']);
       },
       error => {
         console.error('Signin failed:', error);
@@ -71,7 +71,7 @@ export class LoginScreenComponent implements OnInit {
     this.authService.signup(loginData).subscribe(
       response => {
         console.log('Signup successful:', response);
-        this.router.navigate(['/topic']); 
+        this.router.navigate(['/signin']);
       },
       error => {
         console.error('Signup failed:', error);

@@ -18,9 +18,7 @@ export class AuthenticationService {
   }
 
   signup(data: { name: string, email: string, password: string }): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/signup`, data).pipe(
-      tap(response => this.storeToken(response.token))
-    );
+    return this.http.post<any>(`${this.baseUrl}/signup`, data)
   }
 
   private storeToken(token: string): void {

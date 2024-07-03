@@ -8,13 +8,13 @@ import { Post } from './models/post';
 })
 export class PostsService {
   private baseUrl = 'http://localhost:3333/topics';
-  private token = 'oat_Ng.MFpaS1dHaFg2bzlrVkpUeHpYYVZ0S3BzbFZfZW1TM3BnMEp6bVlGXzM4ODAzOTYyODA';
 
   constructor(private http: HttpClient) { }
 
   private getHeaders() {
+    const token = localStorage.getItem('auth_token');
     return new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${token}`
     });
   }
 
